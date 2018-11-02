@@ -1,0 +1,3 @@
+open! Core_kernel
+include Expect_test_helpers_kernel
+include Int.Replace_polymorphic_compare

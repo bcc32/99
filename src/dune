@@ -1,0 +1,5 @@
+(library
+ (name ninety_nine)
+ (libraries base)
+ (preprocess (pps ppx_jane))
+ (inline_tests))

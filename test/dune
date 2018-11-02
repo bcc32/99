@@ -1,0 +1,7 @@
+(library
+ (name ninety_nine_test)
+ (libraries core_kernel
+            expect_test_helpers_kernel
+            ninety_nine)
+ (preprocess (pps ppx_jane))
+ (inline_tests))
