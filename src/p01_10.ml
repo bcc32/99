@@ -15,3 +15,17 @@ let rec next_last_exn = function
 ;;
 
 let p02 = next_last_exn
+
+let kth_exn list k =
+  if k <= 0 then raise_s [%message "negative index" (k : int)];
+  let rec loop list i =
+    match list with
+    | [] -> raise_s [%message "out of range" (k : int)]
+    | hd :: _
+      when i = 1 -> hd
+    | _ :: tl -> loop tl (i - 1)
+  in
+  loop list k
+;;
+
+let p03 = kth_exn

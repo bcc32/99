@@ -19,3 +19,10 @@ let%expect_test "p02" =
   print_s [%sexp (p02 letters : char)];
   [%expect {| y |}]
 ;;
+
+let%expect_test "p03" =
+  print_s [%sexp (p03 [ 1; 2; 3 ] 2 : int)];
+  [%expect {| 2 |}];
+  print_s [%sexp (p03 [ 'o'; 'c'; 'a'; 'm'; 'l' ] 4 : char)];
+  [%expect {| m |}]
+;;
