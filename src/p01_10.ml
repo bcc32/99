@@ -51,3 +51,14 @@ let rev list =
 ;;
 
 let p05 = rev
+
+let rec is_equal x y ~equal =
+  match x, y with
+  | [], [] -> true
+  | x :: xs, y :: ys
+    when equal x y -> is_equal xs ys ~equal
+  | _ -> false
+;;
+
+let is_palindrome list ~equal = is_equal list (rev list) ~equal
+let p06 = is_palindrome

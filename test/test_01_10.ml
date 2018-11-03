@@ -43,3 +43,12 @@ let%expect_test "p05" =
   print_s [%sexp (p05 [ 1; 2; 3; 4 ] : int list)];
   [%expect {| (4 3 2 1) |}]
 ;;
+
+let%expect_test "p06" =
+  print_s [%sexp (p06 [ 1; 2; 3 ] ~equal:Int.equal : bool)];
+  [%expect {| false |}];
+  print_s [%sexp (p06 ("madamimadam" |> String.to_list) ~equal:Char.equal : bool)];
+  [%expect {| true |}];
+  print_s [%sexp (p06 [ 1; 2; 4; 8; 16; 8; 4; 2; 1 ] ~equal:Int.equal : bool)];
+  [%expect {| true |}]
+;;
