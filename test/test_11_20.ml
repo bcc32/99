@@ -27,3 +27,18 @@ let%expect_test "p12" =
         : string )];
   [%expect {| aaaabccaadeeee |}]
 ;;
+
+let%expect_test "p13" =
+  print_s
+    [%sexp
+      ( p13 ("aaaabccaadeeee" |> String.to_list) ~equal:Char.equal
+        : char One_or_many.t list )];
+  [%expect
+    {|
+    ((Many 4 a)
+     (One b)
+     (Many 2 c)
+     (Many 2 a)
+     (One d)
+     (Many 4 e)) |}]
+;;

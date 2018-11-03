@@ -30,3 +30,19 @@ let list_of_one_or_many (x : _ One_or_many.t) =
 
 let run_length_decode' elts = P01_10.Private.concat_map elts ~f:list_of_one_or_many
 let p12 = run_length_decode'
+
+let run_length_encode_direct list ~equal =
+  match list with
+  | [] -> []
+  | prev :: list ->
+    let rec loop list prev count acc =
+      match list with
+      | [] -> List.rev (one_or_many_of_pair (count, prev) :: acc)
+      | hd :: tl
+        when equal prev hd -> loop tl hd (count + 1) acc
+      | hd :: tl -> loop tl hd 1 (one_or_many_of_pair (count, prev) :: acc)
+    in
+    loop list prev 1 []
+;;
+
+let p13 = run_length_encode_direct
