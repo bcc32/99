@@ -47,3 +47,8 @@ let%expect_test "p14" =
   print_s [%sexp (p14 [ 1; 2; 3 ] : int list)];
   [%expect {| (1 1 2 2 3 3) |}]
 ;;
+
+let%expect_test "p15" =
+  print_s [%sexp (p15 [ 'a'; 'b'; 'c' ] 3 : char list)];
+  [%expect {| (a a a b b b c c c) |}]
+;;

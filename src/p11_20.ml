@@ -48,3 +48,5 @@ let run_length_encode_direct list ~equal =
 let p13 = run_length_encode_direct
 let duplicate list = P01_10.Private.concat_map list ~f:(fun x -> [ x; x ])
 let p14 = duplicate
+let replicate list n = P01_10.Private.concat_map list ~f:(fun x -> make_list n x)
+let p15 = replicate
