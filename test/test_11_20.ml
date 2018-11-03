@@ -42,3 +42,8 @@ let%expect_test "p13" =
      (One d)
      (Many 4 e)) |}]
 ;;
+
+let%expect_test "p14" =
+  print_s [%sexp (p14 [ 1; 2; 3 ] : int list)];
+  [%expect {| (1 1 2 2 3 3) |}]
+;;
