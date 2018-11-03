@@ -64,3 +64,11 @@ let%expect_test "p07" =
   print_s [%sexp (p07 (List []) : int list)];
   [%expect {| () |}]
 ;;
+
+let%expect_test "p08" =
+  print_s
+    [%sexp
+      ( p08 ("aaaabccaadeeee" |> String.to_list) ~equal:Char.equal |> String.of_char_list
+        : string )];
+  [%expect {| abcade |}]
+;;

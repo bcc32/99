@@ -78,3 +78,20 @@ let rec flatten =
 ;;
 
 let p07 = flatten
+
+let remove_consecutive_duplicates list ~equal =
+  match list with
+  | []
+  | [ _ ] -> list
+  | prev :: list ->
+    let rec loop list prev accum =
+      match list with
+      | [] -> rev accum
+      | hd :: tl
+        when equal prev hd -> loop tl hd accum
+      | hd :: tl -> loop tl hd (hd :: accum)
+    in
+    loop list prev [ prev ]
+;;
+
+let p08 = remove_consecutive_duplicates
