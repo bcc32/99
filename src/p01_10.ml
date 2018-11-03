@@ -40,3 +40,14 @@ let length list =
 ;;
 
 let p04 = length
+
+let rev list =
+  let rec loop list acc =
+    match list with
+    | [] -> acc
+    | hd :: tl -> loop tl (hd :: acc)
+  in
+  loop list []
+;;
+
+let p05 = rev
