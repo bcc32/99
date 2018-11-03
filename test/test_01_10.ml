@@ -52,3 +52,15 @@ let%expect_test "p06" =
   print_s [%sexp (p06 [ 1; 2; 4; 8; 16; 8; 4; 2; 1 ] ~equal:Int.equal : bool)];
   [%expect {| true |}]
 ;;
+
+let%expect_test "p07" =
+  let open Nested_list in
+  print_s [%sexp (p07 (Atom 5) : int list)];
+  [%expect {| (5) |}];
+  print_s
+    [%sexp
+      (p07 (List [ Atom 1; List [ Atom 2; List [ Atom 3; Atom 4 ]; Atom 5 ] ]) : int list)];
+  [%expect {| (1 2 3 4 5) |}];
+  print_s [%sexp (p07 (List []) : int list)];
+  [%expect {| () |}]
+;;
