@@ -10,3 +10,7 @@ val p07 : 'a Nested_list.t -> 'a list
 val p08 : 'a list -> equal:'a Equal.t -> 'a list
 val p09 : 'a list -> equal:'a Equal.t -> 'a list list
 val p10 : 'a list -> equal:'a Equal.t -> (int * 'a) list
+
+module Private : sig
+  val run_length_encode : 'a list -> equal:'a Equal.t -> (int * 'a) list
+end

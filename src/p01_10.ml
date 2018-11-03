@@ -119,3 +119,7 @@ let run_length_encode list ~equal =
 ;;
 
 let p10 = run_length_encode
+
+module Private = struct
+  let run_length_encode = run_length_encode
+end
