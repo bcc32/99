@@ -81,3 +81,16 @@ let%expect_test "p09" =
         : string list )];
   [%expect {| (aaaa b cc aa d eeee) |}]
 ;;
+
+let%expect_test "p10" =
+  print_s
+    [%sexp
+      (p10 ("aaaabccaadeeee" |> String.to_list) ~equal:Char.equal : (int * char) list)];
+  [%expect {|
+    ((4 a)
+     (1 b)
+     (2 c)
+     (2 a)
+     (1 d)
+     (4 e)) |}]
+;;

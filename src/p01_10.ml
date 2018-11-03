@@ -112,3 +112,10 @@ let group_consecutive_duplicates list ~equal =
 ;;
 
 let p09 = group_consecutive_duplicates
+
+let run_length_encode list ~equal =
+  group_consecutive_duplicates list ~equal
+  |> List.map ~f:(fun xs -> List.length xs, List.hd_exn xs)
+;;
+
+let p10 = run_length_encode
