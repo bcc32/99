@@ -72,3 +72,12 @@ let%expect_test "p08" =
         : string )];
   [%expect {| abcade |}]
 ;;
+
+let%expect_test "p09" =
+  print_s
+    [%sexp
+      ( p09 ("aaaabccaadeeee" |> String.to_list) ~equal:Char.equal
+        |> List.map ~f:String.of_char_list
+        : string list )];
+  [%expect {| (aaaa b cc aa d eeee) |}]
+;;
