@@ -12,5 +12,6 @@ val p09 : 'a list -> equal:'a Equal.t -> 'a list list
 val p10 : 'a list -> equal:'a Equal.t -> (int * 'a) list
 
 module Private : sig
+  val concat_map : 'a list -> f:('a -> 'b list) -> 'b list
   val run_length_encode : 'a list -> equal:'a Equal.t -> (int * 'a) list
 end

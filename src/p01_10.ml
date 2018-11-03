@@ -121,5 +121,6 @@ let run_length_encode list ~equal =
 let p10 = run_length_encode
 
 module Private = struct
+  let concat_map = concat_map
   let run_length_encode = run_length_encode
 end
