@@ -29,3 +29,14 @@ let kth_exn list k =
 ;;
 
 let p03 = kth_exn
+
+let length list =
+  let rec loop list acc =
+    match list with
+    | [] -> acc
+    | _ :: tl -> loop tl (acc + 1)
+  in
+  loop list 0
+;;
+
+let p04 = length

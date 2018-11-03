@@ -23,6 +23,13 @@ let%expect_test "p02" =
 let%expect_test "p03" =
   print_s [%sexp (p03 [ 1; 2; 3 ] 2 : int)];
   [%expect {| 2 |}];
-  print_s [%sexp (p03 [ 'o'; 'c'; 'a'; 'm'; 'l' ] 4 : char)];
+  print_s [%sexp (p03 ("ocaml" |> String.to_list) 4 : char)];
   [%expect {| m |}]
+;;
+
+let%expect_test "p04" =
+  print_s [%sexp (p04 [ 123; 456; 789 ] : int)];
+  [%expect {| 3 |}];
+  print_s [%sexp (p04 ("Hello, world!" |> String.to_list) : int)];
+  [%expect {| 13 |}]
 ;;
