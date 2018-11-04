@@ -14,3 +14,10 @@ let insert_at elt list n =
 ;;
 
 let p21 = insert_at
+
+let iota a b =
+  let rec loop i acc = if i < a then acc else loop (i - 1) (i :: acc) in
+  loop b []
+;;
+
+let p22 = iota
