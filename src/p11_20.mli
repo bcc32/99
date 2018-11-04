@@ -7,3 +7,4 @@ val p14 : 'a list -> 'a list
 val p15 : 'a list -> int -> 'a list
 val p16 : 'a list -> int -> 'a list
 val p17 : 'a list -> int -> 'a list * 'a list
+val p18 : 'a list -> int -> int -> 'a list

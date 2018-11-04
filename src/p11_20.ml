@@ -76,3 +76,11 @@ let split_at list n =
 ;;
 
 let p17 = split_at
+
+let slice_incl list a b =
+  let _, list = split_at list (a - 1) in
+  let list, _ = split_at list (b - a + 1) in
+  list
+;;
+
+let p18 = slice_incl

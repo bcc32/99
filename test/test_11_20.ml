@@ -65,3 +65,9 @@ let%expect_test "p17" =
     [%sexp (fst |> String.of_char_list : string), (snd |> String.of_char_list : string)];
   [%expect {| (abc defghik) |}]
 ;;
+
+let%expect_test "p18" =
+  print_s
+    [%sexp (p18 ("abcdefghik" |> String.to_list) 3 7 |> String.of_char_list : string)];
+  [%expect {| cdefg |}]
+;;
