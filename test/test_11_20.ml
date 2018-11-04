@@ -71,3 +71,11 @@ let%expect_test "p18" =
     [%sexp (p18 ("abcdefghik" |> String.to_list) 3 7 |> String.of_char_list : string)];
   [%expect {| cdefg |}]
 ;;
+
+let%expect_test "p19" =
+  print_s [%sexp (p19 ("abcdefgh" |> String.to_list) 3 |> String.of_char_list : string)];
+  [%expect {| defghabc |}];
+  print_s
+    [%sexp (p19 ("abcdefgh" |> String.to_list) (-2) |> String.of_char_list : string)];
+  [%expect {| ghabcdef |}]
+;;

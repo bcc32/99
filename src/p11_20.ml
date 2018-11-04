@@ -84,3 +84,11 @@ let slice_incl list a b =
 ;;
 
 let p18 = slice_incl
+
+let rotate_left list n =
+  let n = if n < 0 then List.length list + n else n in
+  let l, r = split_at list n in
+  r @ l
+;;
+
+let p19 = rotate_left
