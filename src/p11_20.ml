@@ -50,3 +50,14 @@ let duplicate list = P01_10.Private.concat_map list ~f:(fun x -> [ x; x ])
 let p14 = duplicate
 let replicate list n = P01_10.Private.concat_map list ~f:(fun x -> make_list n x)
 let p15 = replicate
+
+let drop_every list n =
+  let rec loop list i accum =
+    match list with
+    | [] -> List.rev accum
+    | hd :: tl -> if i = 0 then loop tl (n - 1) accum else loop tl (i - 1) (hd :: accum)
+  in
+  loop list (n - 1) []
+;;
+
+let p16 = drop_every
