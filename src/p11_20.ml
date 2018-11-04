@@ -61,3 +61,18 @@ let drop_every list n =
 ;;
 
 let p16 = drop_every
+
+let split_at list n =
+  if n < 0 then raise_s [%message "out of bounds" (n : int)];
+  let rec loop list i accum =
+    if i = 0
+    then List.rev accum, list
+    else (
+      match list with
+      | [] -> raise_s [%message "out of bounds" (n : int)]
+      | hd :: tl -> loop tl (i - 1) (hd :: accum))
+  in
+  loop list n []
+;;
+
+let p17 = split_at
