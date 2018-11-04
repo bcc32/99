@@ -92,3 +92,12 @@ let rotate_left list n =
 ;;
 
 let p19 = rotate_left
+
+let pop_at list n =
+  let prefix, list = split_at list (n - 1) in
+  match list with
+  | [] -> raise_s [%message "out of bounds" (n : int)]
+  | elt :: suffix -> elt, prefix @ suffix
+;;
+
+let p20 n list = pop_at list n

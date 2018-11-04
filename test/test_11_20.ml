@@ -79,3 +79,8 @@ let%expect_test "p19" =
     [%sexp (p19 ("abcdefgh" |> String.to_list) (-2) |> String.of_char_list : string)];
   [%expect {| ghabcdef |}]
 ;;
+
+let%expect_test "p20" =
+  print_s [%sexp (p20 2 ("abcd" |> String.to_list) : char * char list)];
+  [%expect {| (b (a c d)) |}]
+;;

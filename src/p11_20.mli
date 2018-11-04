@@ -9,3 +9,4 @@ val p16 : 'a list -> int -> 'a list
 val p17 : 'a list -> int -> 'a list * 'a list
 val p18 : 'a list -> int -> int -> 'a list
 val p19 : 'a list -> int -> 'a list
+val p20 : int -> 'a list -> 'a * 'a list
