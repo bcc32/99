@@ -21,3 +21,19 @@ let iota a b =
 ;;
 
 let p22 = iota
+
+let shuffle array ~random ~len =
+  for i = 0 to len - 1 do
+    let j = Random.State.int_incl random i (Array.length array - 1) in
+    Array.swap array i j
+  done
+;;
+
+let random_select ?(random = Random.State.default) elts n =
+  let elts = Array.of_list elts in
+  shuffle elts ~random ~len:n;
+  let rec loop i acc = if i < 0 then acc else loop (i - 1) (elts.(i) :: acc) in
+  loop (n - 1) []
+;;
+
+let p23 = random_select
