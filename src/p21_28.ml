@@ -49,3 +49,11 @@ let lotto_select ?(random = Random.State.default) len max =
 ;;
 
 let p24 = lotto_select
+
+let shuffle_list ?(random = Random.State.default) list =
+  let elts = Array.of_list list in
+  shuffle elts ~random ~len:(Array.length elts);
+  list_of_array elts ~len:(Array.length elts)
+;;
+
+let p25 = shuffle_list
