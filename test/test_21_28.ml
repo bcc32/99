@@ -17,3 +17,9 @@ let%expect_test "p23" =
   print_s [%sexp (p23 ("abcdefgh" |> String.to_list) 3 ~random : char list)];
   [%expect {| (d h g) |}]
 ;;
+
+let%expect_test "p24" =
+  let random = Random.State.make [| 24 |] in
+  print_s [%sexp (p24 6 49 ~random : int list)];
+  [%expect {| (4 27 10 12 13 34) |}]
+;;

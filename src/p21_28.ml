@@ -29,11 +29,23 @@ let shuffle array ~random ~len =
   done
 ;;
 
+let list_of_array array ~len =
+  let rec loop i acc = if i < 0 then acc else loop (i - 1) (array.(i) :: acc) in
+  loop (len - 1) []
+;;
+
 let random_select ?(random = Random.State.default) elts n =
   let elts = Array.of_list elts in
   shuffle elts ~random ~len:n;
-  let rec loop i acc = if i < 0 then acc else loop (i - 1) (elts.(i) :: acc) in
-  loop (n - 1) []
+  list_of_array elts ~len:n
 ;;
 
 let p23 = random_select
+
+let lotto_select ?(random = Random.State.default) len max =
+  let elts = iota 1 max |> Array.of_list in
+  shuffle elts ~random ~len;
+  list_of_array elts ~len
+;;
+
+let p24 = lotto_select
