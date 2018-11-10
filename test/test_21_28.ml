@@ -60,3 +60,27 @@ let%expect_test "p26" =
       cef
       def)) |}]
 ;;
+
+let%expect_test "p27" =
+  let show_groupings sizes =
+    let groupings =
+      p27 sizes [ "aldo"; "beat"; "carla"; "david"; "evi"; "flip"; "gary"; "hugo"; "ida" ]
+    in
+    print_s
+      [%message
+        ""
+          ~solutions:(List.length groupings : int)
+          ~example:(List.hd_exn groupings : string list list)]
+  in
+  show_groupings [ 2; 3; 4 ];
+  [%expect {|
+    ((solutions 1260)
+     (example ((aldo beat) (carla david evi) (flip gary hugo ida)))) |}];
+  show_groupings [ 2; 2; 5 ];
+  [%expect {|
+    ((solutions 756)
+     (example (
+       (aldo  beat)
+       (carla david)
+       (evi flip gary hugo ida)))) |}]
+;;

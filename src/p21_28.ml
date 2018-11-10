@@ -73,3 +73,27 @@ let combinations n list =
 ;;
 
 let p26 = combinations
+
+let groupings sizes list =
+  let acc = ref [] in
+  let groups = Array.create [] ~len:(List.length sizes) in
+  let sizes_remaining = Array.of_list sizes in
+  let rec loop list =
+    match list with
+    | [] -> acc := (groups |> Array.to_list |> List.map ~f:List.rev) :: !acc
+    | hd :: tl ->
+      for i = 0 to Array.length sizes_remaining - 1 do
+        if sizes_remaining.(i) > 0
+        then (
+          sizes_remaining.(i) <- sizes_remaining.(i) - 1;
+          groups.(i) <- hd :: groups.(i);
+          loop tl;
+          groups.(i) <- List.tl_exn groups.(i);
+          sizes_remaining.(i) <- sizes_remaining.(i) + 1)
+      done
+  in
+  loop list;
+  List.rev !acc
+;;
+
+let p27 = groupings
