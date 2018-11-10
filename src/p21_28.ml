@@ -57,3 +57,19 @@ let shuffle_list ?(random = Random.State.default) list =
 ;;
 
 let p25 = shuffle_list
+
+let combinations n list =
+  let acc = ref [] in
+  let rec loop n list elts_so_far =
+    match n, list with
+    | 0, _ -> acc := List.rev elts_so_far :: !acc
+    | _, [] -> ()
+    | n, hd :: tl ->
+      loop (n - 1) tl (hd :: elts_so_far);
+      loop n tl elts_so_far
+  in
+  loop n list [];
+  List.rev !acc
+;;
+
+let p26 = combinations

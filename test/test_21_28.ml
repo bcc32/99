@@ -30,3 +30,33 @@ let%expect_test "p25" =
     [%sexp (p25 ("abcdef" |> String.to_list) ~random |> String.of_char_list : string)];
   [%expect {| dafbce |}]
 ;;
+
+let%expect_test "p26" =
+  let combinations =
+    p26 3 ("abcdef" |> String.to_list) |> List.map ~f:String.of_char_list
+  in
+  print_s [%sexp (List.length combinations : int), (combinations : string list)];
+  [%expect
+    {|
+    (20 (
+      abc
+      abd
+      abe
+      abf
+      acd
+      ace
+      acf
+      ade
+      adf
+      aef
+      bcd
+      bce
+      bcf
+      bde
+      bdf
+      bef
+      cde
+      cdf
+      cef
+      def)) |}]
+;;

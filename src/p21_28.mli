@@ -5,3 +5,4 @@ val p22 : int -> int -> int list
 val p23 : ?random:Random.State.t -> 'a list -> int -> 'a list
 val p24 : ?random:Random.State.t -> int -> int -> int list
 val p25 : ?random:Random.State.t -> 'a list -> 'a list
+val p26 : int -> 'a list -> 'a list list
