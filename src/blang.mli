@@ -34,6 +34,9 @@ module O : sig
   val ( ==> ) : t -> t -> t
   val ( <=> ) : t -> t -> t
   val not : t -> t
+
+  (** low-precedence version of (<=>) *)
+  val ( := ) : t -> t -> t
 end
 
 include module type of O

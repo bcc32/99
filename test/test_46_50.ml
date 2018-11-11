@@ -23,3 +23,34 @@ let%expect_test "p47" =
      ((true  false) true)
      ((true  true)  true)) |}]
 ;;
+
+let%expect_test "p48" =
+  let blang =
+    Blang.(var "a" & (var "b" or var "c") := (var "a" & var "b") or (var "a" & var "c"))
+  in
+  print_s [%sexp (p48 [ "a"; "b"; "c" ] blang : Blang.Truth_table.t)];
+  [%expect
+    {|
+    (((false false false) true)
+     ((false false true)  true)
+     ((false true  false) true)
+     ((false true  true)  true)
+     ((true  false false) true)
+     ((true  false true)  true)
+     ((true  true  false) true)
+     ((true  true  true)  true)) |}];
+  let blang =
+    Blang.((var "a" & (var "b" or var "c") <=> var "a" & var "b") or (var "a" & var "c"))
+  in
+  print_s [%sexp (p48 [ "a"; "b"; "c" ] blang : Blang.Truth_table.t)];
+  [%expect
+    {|
+    (((false false false) false)
+     ((false false true)  false)
+     ((false true  false) false)
+     ((false true  true)  false)
+     ((true  false false) false)
+     ((true  false true)  true)
+     ((true  true  false) true)
+     ((true  true  true)  true)) |}]
+;;

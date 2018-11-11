@@ -58,6 +58,7 @@ module O = struct
   let ( ==> ) a b = Impl (a, b)
   let ( <=> ) a b = Equ (a, b)
   let not t = Not t
+  let ( := ) a b = Equ (a, b)
 end
 
 include O
