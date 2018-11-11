@@ -81,3 +81,5 @@ let totient n =
 ;;
 
 let p37 = totient
+let prime_range a b = List.range a b ~stop:`inclusive |> List.filter ~f:is_prime
+let p39 = prime_range

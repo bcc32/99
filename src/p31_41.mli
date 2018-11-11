@@ -7,3 +7,4 @@ val p34 : int -> int
 val p35 : int -> int list
 val p36 : int -> (int * int) list
 val p37 : int -> int
+val p39 : int -> int -> int list

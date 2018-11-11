@@ -39,3 +39,8 @@ let%expect_test "p37" =
   print_s [%sexp (p37 10 : int)];
   [%expect {| 4 |}]
 ;;
+
+let%expect_test "p39" =
+  print_s [%sexp (p39 10 20 : int list)];
+  [%expect {| (11 13 17 19) |}]
+;;
