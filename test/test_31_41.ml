@@ -49,3 +49,20 @@ let%expect_test "p40" =
   print_s [%sexp (p40 28 : int * int)];
   [%expect {| (5 23) |}]
 ;;
+
+let%expect_test "p41" =
+  print_s [%sexp (p41 9 20 : (int * int) list)];
+  [%expect {|
+    ((3 7)
+     (5 7)
+     (3 11)
+     (3 13)
+     (5 13)
+     (3 17)) |}];
+  print_s [%sexp (p41 4 2000 ~lbound:50 : (int * int) list)];
+  [%expect {|
+    ((73 919)
+     (61 1321)
+     (67 1789)
+     (61 1867)) |}]
+;;

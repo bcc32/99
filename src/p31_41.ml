@@ -85,8 +85,23 @@ let prime_range a b = List.range a b ~stop:`inclusive |> List.filter ~f:is_prime
 let p39 = prime_range
 
 let goldbach n =
-  let rec loop i = if is_prime i && is_prime (n - i) then i, n - i else loop (i + 2) in
-  loop 3
+  if n = 4
+  then 2, 2
+  else (
+    let rec loop i = if is_prime i && is_prime (n - i) then i, n - i else loop (i + 2) in
+    loop 3)
 ;;
 
 let p40 = goldbach
+
+let goldbach_range ?(lbound = 0) a b =
+  List.range a b ~stop:`inclusive
+  |> List.filter_map ~f:(fun x ->
+    if x % 2 <> 0
+    then None
+    else (
+      let a, b = goldbach x in
+      if a >= lbound then Some (a, b) else None))
+;;
+
+let p41 = goldbach_range
