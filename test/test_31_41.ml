@@ -26,3 +26,11 @@ let%expect_test "p35" =
   print_s [%sexp (p35 315 : int list)];
   [%expect {| (3 3 5 7) |}]
 ;;
+
+let%expect_test "p36" =
+  print_s [%sexp (p36 315 : (int * int) list)];
+  [%expect {|
+    ((3 2)
+     (5 1)
+     (7 1)) |}]
+;;

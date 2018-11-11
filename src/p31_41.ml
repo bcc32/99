@@ -54,3 +54,11 @@ let prime_factors n =
 ;;
 
 let p35 = prime_factors
+
+let prime_factorize n =
+  prime_factors n
+  |> P01_10.Private.run_length_encode ~equal:Int.equal
+  |> List.map ~f:(fun (mult, prime) -> prime, mult)
+;;
+
+let p36 = prime_factorize
