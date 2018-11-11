@@ -16,3 +16,8 @@ let%expect_test "p33" =
   print_s [%sexp (p33 35 64 : bool)];
   [%expect {| true |}]
 ;;
+
+let%expect_test "p34" =
+  print_s [%sexp (p34 10 : int)];
+  [%expect {| 4 |}]
+;;

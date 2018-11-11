@@ -29,3 +29,15 @@ let gcd a b =
 let p32 = gcd
 let is_coprime a b = gcd a b = 1
 let p33 = is_coprime
+
+let totient n =
+  if n = 1
+  then 1
+  else (
+    let rec loop i acc =
+      if i < n then loop (i + 1) (if is_coprime i n then acc + 1 else acc) else acc
+    in
+    loop 1 0)
+;;
+
+let p34 = totient
