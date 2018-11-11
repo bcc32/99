@@ -41,3 +41,16 @@ let totient n =
 ;;
 
 let p34 = totient
+
+let prime_factors n =
+  let rec loop i n acc =
+    if i * i > n
+    then List.rev (if n > 1 then n :: acc else acc)
+    else if n % i = 0
+    then loop i (n / i) (i :: acc)
+    else loop (if i = 2 then 3 else i + 2) n acc
+  in
+  loop 2 n []
+;;
+
+let p35 = prime_factors
