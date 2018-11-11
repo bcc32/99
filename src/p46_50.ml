@@ -9,3 +9,4 @@ let truth_table a b expr =
 ;;
 
 let p46 ~a ~b expr = truth_table a b expr
+let p47 ~a ~b expr = truth_table a b expr
