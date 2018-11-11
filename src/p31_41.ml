@@ -83,3 +83,10 @@ let totient n =
 let p37 = totient
 let prime_range a b = List.range a b ~stop:`inclusive |> List.filter ~f:is_prime
 let p39 = prime_range
+
+let goldbach n =
+  let rec loop i = if is_prime i && is_prime (n - i) then i, n - i else loop (i + 2) in
+  loop 3
+;;
+
+let p40 = goldbach
