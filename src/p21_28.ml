@@ -97,3 +97,29 @@ let groupings sizes list =
 ;;
 
 let p27 = groupings
+let sort list ~compare = List.sort list ~compare
+
+let sort_by_length list =
+  list
+  |> List.map ~f:(fun x -> x, List.length x)
+  |> sort ~compare:(fun (_, a) (_, b) -> Int.compare a b)
+  |> List.map ~f:fst
+;;
+
+let p28a = sort_by_length
+
+let sort_by_length_frequency lists =
+  let length_frequencies, list =
+    List.fold_map
+      lists
+      ~init:(Map.empty (module Int))
+      ~f:(fun ac x ->
+        let len = List.length x in
+        Map.update ac len ~f:(Option.value_map ~default:1 ~f:Int.succ), (x, len))
+  in
+  sort list ~compare:(fun (_, a) (_, b) ->
+    Int.compare (Map.find_exn length_frequencies a) (Map.find_exn length_frequencies b))
+  |> List.map ~f:fst
+;;
+
+let p28b = sort_by_length_frequency

@@ -73,14 +73,26 @@ let%expect_test "p27" =
           ~example:(List.hd_exn groupings : string list list)]
   in
   show_groupings [ 2; 3; 4 ];
-  [%expect {|
+  [%expect
+    {|
     ((solutions 1260)
      (example ((aldo beat) (carla david evi) (flip gary hugo ida)))) |}];
   show_groupings [ 2; 2; 5 ];
-  [%expect {|
+  [%expect
+    {|
     ((solutions 756)
      (example (
        (aldo  beat)
        (carla david)
        (evi flip gary hugo ida)))) |}]
+;;
+
+let%expect_test "p28" =
+  let list =
+    [ "abc"; "de"; "fgh"; "de"; "ijkl"; "mn"; "o" ] |> List.map ~f:String.to_list
+  in
+  print_s [%sexp (p28a list |> List.map ~f:String.of_char_list : string list)];
+  [%expect {| (o de de mn abc fgh ijkl) |}];
+  print_s [%sexp (p28b list |> List.map ~f:String.of_char_list : string list)];
+  [%expect {| (ijkl o abc fgh de de mn) |}]
 ;;
