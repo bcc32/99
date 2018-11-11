@@ -97,7 +97,38 @@ let groupings sizes list =
 ;;
 
 let p27 = groupings
-let sort list ~compare = List.sort list ~compare
+
+let sort list ~compare =
+  let merge x_list y_list =
+    let rec loop x_list y_list acc =
+      match x_list, y_list with
+      | [], l
+      | l, [] -> List.rev (List.rev_append l acc)
+      | x :: xs, y :: ys ->
+        if compare x y <= 0 then loop xs y_list (x :: acc) else loop x_list ys (y :: acc)
+    in
+    loop x_list y_list []
+  in
+  let split list =
+    let rec loop tortoise hare acc =
+      match tortoise, hare with
+      | _, ([] | [ _ ]) -> List.rev acc, tortoise
+      | t_hd :: t_tl, _ :: _ :: h_tl -> loop t_tl h_tl (t_hd :: acc)
+      | [], _ -> assert false
+      (* the hare is faster *)
+    in
+    loop list list []
+  in
+  let rec merge_sort list =
+    match list with
+    | []
+    | [ _ ] -> list
+    | list ->
+      let x, y = split list in
+      merge (merge_sort x) (merge_sort y)
+  in
+  merge_sort list
+;;
 
 let sort_by_length list =
   list
