@@ -59,3 +59,15 @@ let%expect_test "p49" =
   print_s [%sexp (p49 3 : string list)];
   [%expect {| (000 001 011 010 110 111 101 100) |}]
 ;;
+
+let%expect_test "p50" =
+  let frequencies = [ 'a', 45; 'b', 13; 'c', 12; 'd', 16; 'e', 9; 'f', 5 ] in
+  print_s [%sexp (p50 frequencies ~compare:Char.compare : (char * string) list)];
+  [%expect {|
+    ((a 0)
+     (b 101)
+     (c 100)
+     (d 111)
+     (e 1101)
+     (f 1100)) |}]
+;;
