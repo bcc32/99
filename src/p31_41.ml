@@ -62,3 +62,22 @@ let prime_factorize n =
 ;;
 
 let p36 = prime_factorize
+
+let int_pow a b =
+  let rec loop a b acc =
+    if b = 0
+    then acc
+    else if b % 2 = 0
+    then loop (a * a) (b / 2) acc
+    else loop a (b - 1) (a * acc)
+  in
+  loop a b 1
+;;
+
+let totient n =
+  prime_factorize n
+  |> List.map ~f:(fun (prime, mult) -> (prime - 1) * int_pow prime (mult - 1))
+  |> List.fold ~init:1 ~f:( * )
+;;
+
+let p37 = totient

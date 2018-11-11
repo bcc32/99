@@ -34,3 +34,8 @@ let%expect_test "p36" =
      (5 1)
      (7 1)) |}]
 ;;
+
+let%expect_test "p37" =
+  print_s [%sexp (p37 10 : int)];
+  [%expect {| 4 |}]
+;;
