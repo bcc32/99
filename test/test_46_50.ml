@@ -54,3 +54,8 @@ let%expect_test "p48" =
      ((true  true  false) true)
      ((true  true  true)  true)) |}]
 ;;
+
+let%expect_test "p49" =
+  print_s [%sexp (p49 3 : string list)];
+  [%expect {| (000 001 011 010 110 111 101 100) |}]
+;;

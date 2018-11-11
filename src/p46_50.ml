@@ -18,3 +18,19 @@ let truth_table vars expr =
 let p46 ~a ~b expr = truth_table [ a; b ] expr
 let p47 ~a ~b expr = truth_table [ a; b ] expr
 let p48 = truth_table
+
+let rec gray_code =
+  let cache = Queue.create () in
+  fun n ->
+    if n = 0
+    then [ "" ]
+    else if n < Queue.length cache
+    then Queue.get cache n
+    else (
+      let x = gray_code (n - 1) in
+      List.rev_append
+        (List.rev_map x ~f:(fun x -> "0" ^ x))
+        (List.rev_map x ~f:(fun x -> "1" ^ x)))
+;;
+
+let p49 = gray_code
