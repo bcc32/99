@@ -15,3 +15,15 @@ let is_prime n =
 ;;
 
 let p31 = is_prime
+
+let gcd a b =
+  let rec loop a b =
+    match a, b with
+    | 0, x
+    | x, 0 -> x
+    | a, b -> loop b (a % b)
+  in
+  loop (Int.abs a) (Int.abs b)
+;;
+
+let p32 = gcd
