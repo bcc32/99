@@ -27,3 +27,5 @@ let gcd a b =
 ;;
 
 let p32 = gcd
+let is_coprime a b = gcd a b = 1
+let p33 = is_coprime
