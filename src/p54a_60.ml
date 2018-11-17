@@ -26,3 +26,9 @@ let rec construct_balanced_trees =
 let p55 = construct_balanced_trees
 let is_symmetric t = Tree.is_isomorphic t (Tree.mirror t)
 let p56 = is_symmetric
+
+let construct_binary_tree elts ~compare =
+  List.fold elts ~init:Tree.Empty ~f:(Tree.add ~compare)
+;;
+
+let p57 = construct_binary_tree

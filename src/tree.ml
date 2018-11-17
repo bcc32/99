@@ -16,3 +16,12 @@ let rec mirror = function
   | Empty -> Empty
   | Node (x, l, r) -> Node (x, mirror r, mirror l)
 ;;
+
+let rec add t ~compare elt =
+  match t with
+  | Empty -> Node (elt, Empty, Empty)
+  | Node (elt', l, r) ->
+    if compare elt elt' <= 0
+    then Node (elt', add l ~compare elt, r)
+    else Node (elt', l, add r ~compare elt)
+;;
