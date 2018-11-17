@@ -35,3 +35,15 @@ let%expect_test "p57" =
   show_is_symmetric [ 3; 2; 5; 7; 1 ];
   [%expect {| true |}]
 ;;
+
+let%expect_test "p58" =
+  print_s [%sexp (p58 5 : char Tree.t list)];
+  [%expect
+    {|
+    ((Node x
+       (Node x Empty (Node x Empty Empty))
+       (Node x (Node x Empty Empty) Empty))
+     (Node x
+       (Node x (Node x Empty Empty) Empty)
+       (Node x Empty (Node x Empty Empty)))) |}]
+;;

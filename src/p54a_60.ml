@@ -32,3 +32,9 @@ let construct_binary_tree elts ~compare =
 ;;
 
 let p57 = construct_binary_tree
+
+let construct_balanced_symmetric_trees n =
+  construct_balanced_trees n |> List.filter ~f:is_symmetric
+;;
+
+let p58 = construct_balanced_symmetric_trees
