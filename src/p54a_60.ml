@@ -24,3 +24,5 @@ let rec construct_balanced_trees =
 ;;
 
 let p55 = construct_balanced_trees
+let is_symmetric t = Tree.is_isomorphic t (Tree.mirror t)
+let p56 = is_symmetric

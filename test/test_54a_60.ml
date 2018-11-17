@@ -11,3 +11,11 @@ let%expect_test "p55" =
      (Node x (Node x Empty (Node x Empty Empty)) (Node x Empty Empty))
      (Node x (Node x (Node x Empty Empty) Empty) (Node x Empty Empty))) |}]
 ;;
+
+let%expect_test "p56" =
+  print_s [%sexp (p56 (Node ('x', Node ('x', Empty, Empty), Empty)) : bool)];
+  [%expect {| false |}];
+  print_s
+    [%sexp (p56 (Node ('x', Node ('x', Empty, Empty), Node ('x', Empty, Empty))) : bool)];
+  [%expect {| true |}]
+;;
