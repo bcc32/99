@@ -16,3 +16,12 @@ let leaves t =
 ;;
 
 let p61a = leaves
+
+let internals t =
+  Tree.fold_nodes t ~init:[] ~f:(fun acc -> function
+    | _, Empty, Empty -> acc
+    | x, _, _ -> x :: acc)
+  |> List.rev
+;;
+
+let p62 = internals
