@@ -75,10 +75,12 @@ let max_height nodes =
   loop (-1)
 ;;
 
+let count_nodes = Tree.fold_nodes ~init:0 ~f:(fun acc _ -> acc + 1)
+
 let construct_height_balanced_trees_by_nodes nodes =
   List.range (min_height nodes) (max_height nodes) ~stop:`inclusive
   |> List.concat_map ~f:(fun height -> construct_height_balanced_trees height)
-  |> List.filter ~f:(fun t -> Tree.count_nodes t = nodes)
+  |> List.filter ~f:(fun t -> count_nodes t = nodes)
 ;;
 
 let p60 = construct_height_balanced_trees_by_nodes

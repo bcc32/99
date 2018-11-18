@@ -26,13 +26,12 @@ let rec add t ~compare elt =
     else Node (elt', l, add r ~compare elt)
 ;;
 
-let rec count_nodes = function
-  | Empty -> 0
-  | Node (_, l, r) -> 1 + count_nodes l + count_nodes r
-;;
-
-let rec count_leaves = function
-  | Empty -> 0
-  | Node (_, Empty, Empty) -> 1
-  | Node (_, l, r) -> count_leaves l + count_leaves r
+let rec fold_nodes t ~init ~f =
+  match t with
+  | Empty -> init
+  | Node (elt, l, r) ->
+    let init = fold_nodes l ~init ~f in
+    let init = f init (elt, l, r) in
+    let init = fold_nodes r ~init ~f in
+    init
 ;;

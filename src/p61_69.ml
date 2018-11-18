@@ -1,3 +1,18 @@
 open! Base
 
-let p61 = Tree.count_leaves
+let count_leaves =
+  Tree.fold_nodes ~init:0 ~f:(fun acc -> function
+    | _, Empty, Empty -> acc + 1
+    | _ -> acc)
+;;
+
+let p61 = count_leaves
+
+let leaves t =
+  Tree.fold_nodes t ~init:[] ~f:(fun acc -> function
+    | x, Empty, Empty -> x :: acc
+    | _ -> acc)
+  |> List.rev
+;;
+
+let p61a = leaves
