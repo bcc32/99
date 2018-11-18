@@ -18,5 +18,5 @@ let%expect_test "p61a" =
 
 let%expect_test "p62" =
   print_s [%sexp (p62 tree4 : int list)];
-  [%expect {| (2 1) |}]
+  [%expect {| (1 2) |}]
 ;;

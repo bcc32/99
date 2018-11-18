@@ -30,8 +30,8 @@ let rec fold_nodes t ~init ~f =
   match t with
   | Empty -> init
   | Node (elt, l, r) ->
-    let init = fold_nodes l ~init ~f in
     let init = f init (elt, l, r) in
+    let init = fold_nodes l ~init ~f in
     let init = fold_nodes r ~init ~f in
     init
 ;;
