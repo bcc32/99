@@ -25,3 +25,8 @@ let rec add t ~compare elt =
     then Node (elt', add l ~compare elt, r)
     else Node (elt', l, add r ~compare elt)
 ;;
+
+let rec count_nodes = function
+  | Empty -> 0
+  | Node (_, l, r) -> 1 + count_nodes l + count_nodes r
+;;

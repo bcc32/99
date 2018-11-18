@@ -55,3 +55,30 @@ let rec construct_height_balanced_trees =
 ;;
 
 let p59 = construct_height_balanced_trees
+let min_height nodes = Int.ceil_log2 (nodes + 1)
+
+(* TODO partial application*)
+
+let rec min_nodes =
+  let cache = Hashtbl.create (module Int) in
+  fun height ->
+    Hashtbl.findi_or_add cache height ~default:(function
+      | 0 -> 0
+      | 1 -> 1
+      | n -> min_nodes (n - 2) + min_nodes (n - 1) + 1)
+;;
+
+let max_height nodes =
+  let rec loop height =
+    if nodes < min_nodes (height + 1) then height else loop (height + 1)
+  in
+  loop (-1)
+;;
+
+let construct_height_balanced_trees_by_nodes nodes =
+  List.range (min_height nodes) (max_height nodes) ~stop:`inclusive
+  |> List.concat_map ~f:(fun height -> construct_height_balanced_trees height)
+  |> List.filter ~f:(fun t -> Tree.count_nodes t = nodes)
+;;
+
+let p60 = construct_height_balanced_trees_by_nodes

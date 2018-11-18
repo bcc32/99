@@ -62,3 +62,18 @@ let%expect_test "p59" =
          (Node x Empty Empty)))
      (Node x (Node x Empty (Node x Empty Empty)) (Node x Empty Empty))) |}]
 ;;
+
+let%expect_test "p60" =
+  print_s [%sexp (List.length (p60 15) : int)];
+  [%expect {| 1553 |}];
+  print_s [%sexp (List.range 0 4 |> List.map ~f:p60 : char Tree.t list list)];
+  [%expect
+    {|
+    ((Empty)
+     ((Node x Empty Empty))
+     ((Node x Empty (Node x Empty Empty)) (Node x (Node x Empty Empty) Empty))
+     ((
+       Node x
+       (Node x Empty Empty)
+       (Node x Empty Empty)))) |}]
+;;
