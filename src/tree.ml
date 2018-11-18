@@ -30,3 +30,9 @@ let rec count_nodes = function
   | Empty -> 0
   | Node (_, l, r) -> 1 + count_nodes l + count_nodes r
 ;;
+
+let rec count_leaves = function
+  | Empty -> 0
+  | Node (_, Empty, Empty) -> 1
+  | Node (_, l, r) -> count_leaves l + count_leaves r
+;;
