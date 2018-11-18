@@ -38,3 +38,20 @@ let construct_balanced_symmetric_trees n =
 ;;
 
 let p58 = construct_balanced_symmetric_trees
+
+let rec construct_height_balanced_trees =
+  let cache = Hashtbl.create (module Int) in
+  fun n ->
+    Hashtbl.findi_or_add cache n ~default:(function
+      | 0 -> [ Tree.Empty ]
+      | 1 -> [ Tree.Node ('x', Empty, Empty) ]
+      | n ->
+        let n_2 = construct_height_balanced_trees (n - 2) in
+        let n_1 = construct_height_balanced_trees (n - 1) in
+        List.cartesian_product n_2 n_1
+        @ List.cartesian_product n_1 n_2
+        @ List.cartesian_product n_1 n_1
+        |> List.map ~f:(fun (x, y) -> Tree.Node ('x', x, y)))
+;;
+
+let p59 = construct_height_balanced_trees

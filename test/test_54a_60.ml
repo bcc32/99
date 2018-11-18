@@ -47,3 +47,18 @@ let%expect_test "p58" =
        (Node x (Node x Empty Empty) Empty)
        (Node x Empty (Node x Empty Empty)))) |}]
 ;;
+
+let%expect_test "p59" =
+  let trees = List.take (p59 3) 4 in
+  print_s [%sexp (trees : char Tree.t list)];
+  [%expect
+    {|
+    ((Node x (Node x Empty Empty) (Node x Empty (Node x Empty Empty)))
+     (Node x (Node x Empty Empty) (Node x (Node x Empty Empty) Empty))
+     (Node x
+       (Node x Empty Empty)
+       (Node x
+         (Node x Empty Empty)
+         (Node x Empty Empty)))
+     (Node x (Node x Empty (Node x Empty Empty)) (Node x Empty Empty))) |}]
+;;
