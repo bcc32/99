@@ -20,3 +20,8 @@ let%expect_test "p62" =
   print_s [%sexp (p62 tree4 : int list)];
   [%expect {| (1 2) |}]
 ;;
+
+let%expect_test "p62b" =
+  print_s [%sexp (p62b tree4 2 : int list)];
+  [%expect {| (2 2) |}]
+;;

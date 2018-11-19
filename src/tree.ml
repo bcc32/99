@@ -26,12 +26,17 @@ let rec add t ~compare elt =
     else Node (elt', l, add r ~compare elt)
 ;;
 
-let rec fold_nodes t ~init ~f =
-  match t with
-  | Empty -> init
-  | Node (elt, l, r) ->
-    let init = f init (elt, l, r) in
-    let init = fold_nodes l ~init ~f in
-    let init = fold_nodes r ~init ~f in
-    init
+let foldi_nodes t ~init ~f =
+  let rec loop t depth ~init ~f =
+    match t with
+    | Empty -> init
+    | Node (elt, l, r) ->
+      let init = f init depth (elt, l, r) in
+      let init = loop l (depth + 1) ~init ~f in
+      let init = loop r (depth + 1) ~init ~f in
+      init
+  in
+  loop t 0 ~init ~f
 ;;
+
+let fold_nodes t ~init ~f = foldi_nodes t ~init ~f:(fun acc _ node -> f acc node)

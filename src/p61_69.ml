@@ -25,3 +25,11 @@ let internals t =
 ;;
 
 let p62 = internals
+
+let at_level t level =
+  Tree.foldi_nodes t ~init:[] ~f:(fun acc level' (elt, _, _) ->
+    if level = level' then elt :: acc else acc)
+  |> List.rev
+;;
+
+let p62b t level = at_level t (level - 1)
