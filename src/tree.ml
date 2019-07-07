@@ -26,17 +26,31 @@ let rec add t ~compare elt =
     else Node (elt', l, add r ~compare elt)
 ;;
 
-let foldi_nodes t ~init ~f =
-  let rec loop t depth ~init ~f =
-    match t with
-    | Empty -> init
-    | Node (elt, l, r) ->
-      let init = f init depth (elt, l, r) in
-      let init = loop l (depth + 1) ~init ~f in
-      let init = loop r (depth + 1) ~init ~f in
-      init
-  in
-  loop t 0 ~init ~f
-;;
+type 'a order = 'a * 'a t * 'a t
 
-let fold_nodes t ~init ~f = foldi_nodes t ~init ~f:(fun acc _ node -> f acc node)
+module Pre_order = struct
+  let fold_level t ~init ~f =
+    let rec loop t depth ~init ~f =
+      match t with
+      | Empty -> init
+      | Node (elt, l, r) ->
+        let init = f init depth (elt, l, r) in
+        let init = loop l (depth + 1) ~init ~f in
+        let init = loop r (depth + 1) ~init ~f in
+        init
+    in
+    loop t 0 ~init ~f
+  ;;
+
+  module For_container = struct
+    type nonrec 'a t = 'a t
+
+    let fold (elt, l, r) ~init ~f =
+      fold_level (Node (elt, l, r)) ~init ~f:(fun acc _ node -> f acc node)
+    ;;
+
+    let iter = `Define_using_fold
+  end
+
+  include Container.Make (For_container)
+end

@@ -10,8 +10,11 @@ val mirror : 'a t -> 'a t
 val add : 'a t -> compare:('a -> 'a -> int) -> 'a -> 'a t
 
 (** pre-order traversal of nodes *)
-val fold_nodes : 'a t -> init:'b -> f:('b -> 'a * 'a t * 'a t -> 'b) -> 'b
+module Pre_order : sig
+  type 'a node = 'a * 'a t * 'a t
+  type 'a t
 
-(** equivalent to [fold_nodes] but with the depth of the node as well (counting
-    from 0 at the root of the tree). *)
-val foldi_nodes : 'a t -> init:'b -> f:('b -> int -> 'a * 'a t * 'a t -> 'b) -> 'b
+  val fold_level : 'a t -> init:'b -> f:('b -> int -> 'a node -> 'b) -> 'b
+
+  include Container.S1 with type 'a t := 'a node t
+end
